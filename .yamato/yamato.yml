@@ -96,12 +96,33 @@ pack:
       paths:
         - "com.autodesk.fbx/**"
 
+# Job to generate documentation for the package
+generate_documentation:
+  name : Generate documentation
+  agent:
+    type: {{ mac_platform.type }}
+    image: {{ mac_platform.image }}
+    flavor: {{ mac_platform.flavor }}
+  commands:
+    - brick_source: git@github.cds.internal.unity3d.com:wind-xu/virtual_production_doc_generation.git@v0.3.0
+      variables:
+        EDITOR_VERSION: {{ editors.last.version }}
+        PACKAGE_NAME: com.autodesk.fbx
+        PACKAGE_PATH: com.autodesk.fbx
+        #Set to false because some file links such as api/index.html don't exist in local Documentation folder and will cause warnings. They only exist in generated documentation.
+        WARNINGS_AS_ERRORS: false
+  dependencies:
+    - .yamato/yamato.yml#pack
+
 {% for editor in editors %}
 {% for platform in platforms %}
 test_{{ platform.name }}_{{ editor.version }}:
   name : Test version {{ editor.version }} on {{ platform.name }}
   agent:
     type: {{ platform.type }}
+{% if platform.model %}
+    model: {{ platform.model }}
+{% endif %}
     image: {{ platform.image }}
     flavor: {{ platform.flavor}}
 {% if platform.name == "ubuntu" %}
@@ -115,29 +136,13 @@ test_{{ platform.name }}_{{ editor.version }}:
     - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update
     - sudo apt-get -y install --only-upgrade libstdc++6  
-{% endif %} 
-{% if editor.version == 2018.4 and platform.name == "ubuntu" %}
-    # There is no IL2CPP on Ubuntu before 2019.3
-    - upm-ci package test --backend mono --unity-version {{ editor.version }} --package-path com.autodesk.fbx
-{% elseif editor.version == 2018.4 %}
-    # Setting backend to il2cpp to ensure il2cpp is installed.
-    # Note: setting backend to il2cpp will still run the tests with mono by default 
-    #       (would need to add --platform standalone to run playmode tests with il2cpp),
-    #       however this installs il2cpp so that the editor build tests can change the backend as necessary.
-    - upm-ci package test --backend il2cpp --unity-version {{ editor.version }} --package-path com.autodesk.fbx
-{% else %}
-    {% if platform.name == "ubuntu" %}
     # clang required for il2cpp backend
     - sudo apt-get -y install clang
-    {% endif %}
+{% endif %}
     # Code coverage is only available in Unity 2019.3 and higher.
     # Setting backend to il2cpp to ensure il2cpp is installed and can be used by editor tests (see Note above).
     - upm-ci package test --backend il2cpp --unity-version {{ editor.version }} --package-path com.autodesk.fbx --enable-code-coverage --extra-utr-arg=--coverage-pkg-version=1.2.2 --code-coverage-options 'generateHtmlReport;assemblyFilters:+Autodesk.Fbx'
-{% if platform.name != "ubuntu" %}
-    # Tests are temporarily disabled on linux (FBX-100)
     - python tests/Yamato/check_coverage_percent.py upm-ci~/test-results/ {{ coverage.minPercent }}
-{% endif %}
-{% endif %}
     - echo "****** PASSED *******"
   artifacts:
     packages:
@@ -151,12 +156,21 @@ test_{{ platform.name }}_{{ editor.version }}:
 {% endfor %}
 {% endfor %}
 
+# PR trigger for doc only changes, it will run generate_documentation job.
+test_trigger_pr_documentation:
+  name: Pull Request Tests Trigger for documentation changes
+  triggers:
+    cancel_old_ci: true
+    expression: pull_request.(source match ".*" AND push.changes.any match "com.autodesk.fbx/Documentation~/**" AND NOT draft)
+  dependencies:
+    - .yamato/yamato.yml#generate_documentation
+
 # PR trigger
 test_trigger_pr:
   name: Pull Request Tests Trigger
   triggers:
     cancel_old_ci: true
-    expression: pull_request.(source match ".*" AND NOT draft)
+    expression: pull_request.(source match ".*" AND NOT push.changes.all match ["com.autodesk.fbx/Documentation~/**", "**/*.md"] AND NOT draft)
   dependencies:
     - .yamato/yamato.yml#pack
 {% for editor in editors %}
@@ -188,11 +202,6 @@ promotion_test:
   commands:
     - npm install upm-ci-utils@stable -g --registry https://artifactory.prd.cds.internal.unity3d.com/artifactory/api/npm/upm-npm
     - upm-ci package test --backend il2cpp --unity-version {{ promote_platform.version }} --package-path com.autodesk.fbx
-  triggers:
-    pull_requests:
-      - targets:
-          only:
-            - "master"
   artifacts:
     logs:
       paths:
