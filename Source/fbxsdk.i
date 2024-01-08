@@ -345,3 +345,4 @@
 %include "fbxshape.i"
 %include "fbxio.i"
 %include "fbxconstraint.i"
+%include "fbxgeometryconverter.i"

@@ -17,6 +17,7 @@
 %rename("%s") FbxScene::GetGlobalSettings();
 %rename("%s") FbxScene::AddPose;
 %rename("%s") FbxScene::GetPose;
+%rename("%s") FbxScene::GetPoseCount() const;
 %rename("%s") FbxScene::SetCurrentAnimationStack;
 %rename("%s") FbxScene::GetCurrentAnimationStack;
 %rename("%s") FbxScene::GetMaterialCount;
