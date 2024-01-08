@@ -90,7 +90,7 @@
 // Animation
 %rename("%s") FbxObject::GetSrcObjectCountAnimLayer; 
 
-%include "fbxsdk/core/fbxobject.h"
+%include "UnityFbxSdkNative-fixed-headers/fbxobject.h"
 
 %extend FbxObject {
     int GetSrcObjectCountAnimLayer()

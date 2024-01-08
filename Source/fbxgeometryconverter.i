@@ -9,17 +9,11 @@
 
 %rename("%s", %$isclass) FbxGeometryConverter;
 
-//%rename("%s") FbxGeometryConverter::FbxGeometryConverter(FbxManager* pManager);
-
 // Not sure why we have to do this.
 // All other function seem to be included by default
-%extend FbxGeometryConverter {
-  FbxGeometryConverter(FbxManager* pManager) {
-    return new FbxGeometryConverter(FbxGeometryConverter::FbxGeometryConverter(pManager));
-  }
-}
 
-
+#undef DOXYGEN_SHOULD_SKIP_THIS
 %include "fbxsdk/utils/fbxgeometryconverter.h"
+#define DOXYGEN_SHOULD_SKIP_THIS
 
 %reveal_all_end;
