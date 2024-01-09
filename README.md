@@ -25,6 +25,15 @@ Newer versions of each software likely also work, except as noted.
 When installing Visual Studio, make sure to install C# sdk, C++ sdk, and Universal Windows App Development Tools (this can be done by doing a custom install or
 relaunching the installer and selecting "Modify").
 
+### OSX
+
+When building for OSX, the file `Runtime/Scripts/NativeMethods.cs` will have the path to the library wrong.
+Change `const string DllImportName = "UnityFbxSdkNative.bundle/Contents/MacOS/UnityFbxSdkNative";`
+to `const string DllImportName = "UnityFbxSdkNative";`
+
+If you are building on an intel CPU, you must disable the vector tests, since they will fail to run.
+You can do it with the `--yamato` flag, e.g. `python3 build.py --yamato`.
+
 ### OSX, Linux, or Windows:
 
 ```bash
