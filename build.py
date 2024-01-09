@@ -43,6 +43,7 @@ config_args = [
     '-DCMAKE_BUILD_TYPE={}'.format(args.build_type), 
     '-DCMAKE_INSTALL_PREFIX={}'.format(os.path.join(builddir, 'install')),
     '-DCMAKE_OSX_ARCHITECTURES=arm64',
+    '-Wno-deprecated'
     ]
 
 # Where to find swig if not standard install
