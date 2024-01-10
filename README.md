@@ -14,6 +14,7 @@ The bindings are a subset of the FBX SDK, and in particular they do not support 
 * [cmake](https://cmake.org/download/) 3.12
 * [swig](http://www.swig.org/download.html) 3.0.12 -- note that 4.0 is *not* compatible.
 * [Python](https://www.python.org/downloads/) 2.7.x or 3.x
+* [FBX SDK](https://aps.autodesk.com/developer/overview/fbx-sdk) 2020.3.4
 * Windows: [Visual Studio Community](https://www.visualstudio.com/downloads/)
 * macOS: macOS 10.15 or later with [Xcode](https://developer.apple.com/xcode/features/) 12.x with command-line tools installed
 * Linux: not supported
