@@ -21,6 +21,8 @@
 
 #endif
 
+%rename("%s") FbxMesh::GenerateTangentsData;
+
 /*
  * AddPolygon crashes if you haven't called BeginPolygon. We add a check.
  *
