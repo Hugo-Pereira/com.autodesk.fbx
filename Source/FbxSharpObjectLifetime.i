@@ -37,6 +37,7 @@
 
 /* Allow CSharp to release references. */
 extern "C" SWIGEXPORT void SWIGSTDCALL CSharp_$module_Release_WeakPointerHandle(void *handle) {
+
     if (!handle) { return; }
     static_cast<WeakPointerHandle*>(handle)->ReleaseReference();
 }
@@ -171,12 +172,12 @@ extern "C" SWIGEXPORT int SWIGSTDCALL CSharp_$module_InitFbxAllocators() {
     if (swigCPtr.Handle != global::System.IntPtr.Zero) {
       if (disposing) {
         Destroy();
-      }
+      
       lock(this) {
         $imclassname.ReleaseWeakPointerHandle(swigCPtr);
         swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
       }
-    }
+    }}
   }%}
 
 /* We handled the finalizer already, clobber the default handling. */

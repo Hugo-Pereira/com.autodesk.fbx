@@ -31,7 +31,7 @@ endif()
 
 # CMake docs say this should be before project but it doesn't actually work that way.
 if (${CMAKE_OSX_ARCHITECTURES} STREQUAL "x86_64")
-set(CMAKE_OSX_DEPLOYMENT_TARGET "10.13")
+set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15")
 endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -58,8 +58,6 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
 endif()
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
-
 # don't generate stubs for inherited virtuals e.g. GetSelected
 SET(CMAKE_SWIG_FLAGS -fvirtual)
 
@@ -72,6 +70,7 @@ if (${USE_STEVEDORE} STREQUAL "ON")
     set(stevedore_repo_name testing)
 
     if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
         set(fbxsdk_artifact_name fbxsdk-mac-x64)
         if (${CMAKE_OSX_ARCHITECTURES} STREQUAL "x86_64")
             set(fbxsdk_artifact_id 2020.3.2_e64b3e38b4acfe27d1d8947133acc14d4632ab318b83d91529ff008254d7b99a.7z)
