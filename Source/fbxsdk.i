@@ -346,3 +346,4 @@
 %include "fbxio.i"
 %include "fbxconstraint.i"
 %include "fbxgeometryconverter.i"
+%include "fbxtakeinfo.i"
