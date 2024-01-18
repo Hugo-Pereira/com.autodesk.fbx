@@ -24,6 +24,7 @@
 %rename("%s") FbxScene::GetMaterial(int pIndex);
 %rename("%s") FbxScene::GetGeometryCount;
 %rename("%s") FbxScene::GetGeometry(int pIndex);
+%rename("%s") FbxScene::GetAnimationEvaluator;
 %rename("GetMaterial") FbxScene::GetMaterialByNameChecked;
 %extend FbxScene {
     FbxSurfaceMaterial* GetMaterialByNameChecked(char* pName){

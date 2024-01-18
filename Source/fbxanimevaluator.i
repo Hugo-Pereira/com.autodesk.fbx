@@ -10,5 +10,6 @@
 // As the ignore everything will include the constructor, destructor, methods etc
 // in the class, these have to be explicitly unignored too:
 %rename("%s") FbxAnimEvaluator::ValidateTime;
+%rename("%s") FbxAnimEvaluator::GetNodeLocalTransform;
 
 %include "fbxsdk/scene/animation/fbxanimevaluator.h"

@@ -171,7 +171,7 @@ extern "C" SWIGEXPORT int SWIGSTDCALL CSharp_$module_InitFbxAllocators() {
   protected void Dispose(bool disposing) {
     if (swigCPtr.Handle != global::System.IntPtr.Zero) {
       if (disposing) {
-        Destroy();
+        //Destroy();
       
       lock(this) {
         $imclassname.ReleaseWeakPointerHandle(swigCPtr);
