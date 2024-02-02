@@ -66,6 +66,7 @@
 %rename("%s") FbxObject::GetDstObjectCount() const;
 %rename("%s") FbxObject::GetDstObject(int pIndex=0) const;
 %rename("%s") FbxObject::FindDstObject(const char* pName, int pStartIndex=0) const;
+%rename("%s") FbxObject::Copy;
 
 /* Shader implementation. */
 %rename("%s") FbxObject::AddImplementation;
