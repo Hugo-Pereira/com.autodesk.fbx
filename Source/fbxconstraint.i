@@ -75,15 +75,15 @@
 
 // FbxConstraintScale
 
-//%ignore FbxConstraintScale::ConstraintSources;
-//%ignore FbxConstraintScale::ConstrainedObject;
+%ignore FbxConstraintScale::ConstraintSources;
+%ignore FbxConstraintScale::ConstrainedObject;
 
-//%fbximmutable(FbxConstraintScale::Scaling);
-//%fbximmutable(FbxConstraintScale::AffectX);
-//%fbximmutable(FbxConstraintScale::AffectY);
-//%fbximmutable(FbxConstraintScale::AffectZ);
+%fbximmutable(FbxConstraintScale::Scaling);
+%fbximmutable(FbxConstraintScale::AffectX);
+%fbximmutable(FbxConstraintScale::AffectY);
+%fbximmutable(FbxConstraintScale::AffectZ);
 
-//%include "fbxsdk/scene/constraint/fbxconstraintscale.h"
+%include "fbxsdk/scene/constraint/fbxconstraintscale.h"
 
 /****************************************************************************
  * We end reveal-all mode now. This must be at the end of the file.
