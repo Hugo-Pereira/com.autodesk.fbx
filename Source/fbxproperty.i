@@ -46,6 +46,8 @@
 %rename("%s") FbxProperty::Destroy;
 %rename("%s") FbxProperty::DestroyChildren;
 %rename("%s") FbxProperty::DestroyRecursively;
+%rename("%s") FbxProperty::CopyValue;
+
 
 /***************************************************************************
  * Property metadata
