@@ -10,6 +10,17 @@
 %declare_static_class(FbxTransform);
 %rename("%s") FbxTransform::EInheritType;
 
+// FbxRotationOrder
+%rename("%s", %$isclass) FbxRotationOrder;
+%rename("%s") FbxRotationOrder::FbxRotationOrder;
+%rename("%s") FbxRotationOrder::~FbxRotationOrder;
+
+%rename("%s") FbxRotationOrder::GetOrder;
+%rename("%s") FbxRotationOrder::V2M;
+%rename("%s") FbxRotationOrder::M2V;
+%rename("%s") FbxRotationOrder::V2VRef;
+
+
 
 // FbxLimits
 // This is a simple class that you can use independently of anything.

@@ -11,5 +11,6 @@
 // in the class, these have to be explicitly unignored too:
 %rename("%s") FbxAnimEvaluator::ValidateTime;
 %rename("%s") FbxAnimEvaluator::GetNodeLocalTransform;
+%rename("%s") FbxAnimEvaluator::GetNodeGlobalTransform;
 
 %include "fbxsdk/scene/animation/fbxanimevaluator.h"
