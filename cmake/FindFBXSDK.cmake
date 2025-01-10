@@ -28,7 +28,7 @@ elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
   list(APPEND CMAKE_SWIG_FLAGS "-D_MSC_VER")
 
   set(_fbxsdk_root_path "C:/Program Files/Autodesk/FBX/FBX SDK")
-  list(APPEND _fbxsdk_lib_paths "lib/vs2019/x64/release")
+  list(APPEND _fbxsdk_lib_paths "lib/vs2022/x64/release")
 
 elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
   list(APPEND CMAKE_SWIG_FLAGS "-D__linux__")
@@ -66,7 +66,7 @@ find_library(FBXSDK_LIBRARY libfbxsdk.a libfbxsdk-md.lib PATHS ${FBXSDK_LIB_PATH
 
 find_file(_fbxsdk_VERSION_HEADER fbxsdk_version.h PATHS ${FBXSDK_INCLUDE_DIR}/fbxsdk)
 if(${_fbxsdk_VERSION_HEADER} STREQUAL "_fbxsdk_VERSION_HEADER-NOTFOUND")
-  message(FATAL_ERROR "Couldn't find fbxsdk_version.h in drectory: ${FBXSDK_INCLUDE_DIR}/fbxsdk")
+  message(FATAL_ERROR "Couldn't find fbxsdk_version.h in directory: ${FBXSDK_INCLUDE_DIR}/fbxsdk")
 else()
   file(READ ${_fbxsdk_VERSION_HEADER} _fbxsdk_VERSION_HEADER_CONTENTS)
   string(REGEX MATCH "FBXSDK_VERSION_MAJOR[\t ]+[0-9]+" FBXSDK_VERSION_MAJOR "${_fbxsdk_VERSION_HEADER_CONTENTS}")

@@ -14,6 +14,7 @@
 %rename("%s") FbxPose::SetIsBindPose;
 %rename("%s") FbxPose::IsBindPose;
 %rename("%s") FbxPose::Add;
+%rename("%s") FbxPose::Remove;
 %rename("%s") FbxPose::GetNode;
 %rename("%s") FbxPose::GetMatrix;
 %rename("%s") FbxPose::GetCount;
