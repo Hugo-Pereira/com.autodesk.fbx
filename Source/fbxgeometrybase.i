@@ -18,14 +18,28 @@
 %rename("%s") FbxGeometryBase::CreateElementBinormal;
 %rename("%s") FbxGeometryBase::CreateElementTangent;
 %rename("%s") FbxGeometryBase::CreateElementMaterial;
+%rename("%s") FbxGeometryBase::CreateElementUV;
+%rename("%s") FbxGeometryBase::CreateElementVertexColor;
+
 %rename("%s") FbxGeometryBase::GetElementMaterialCount const;
 %rename("%s") FbxGeometryBase::GetElementMaterial();
-%rename("%s") FbxGeometryBase::CreateElementVertexColor;
-%rename("%s") FbxGeometryBase::CreateElementUV;
+%rename("%s") FbxGeometryBase::GetElementMaterial(int pIndex);
 
+%rename("%s") FbxGeometryBase::GetElementVertexColorCount const;
+%rename("%s") FbxGeometryBase::GetElementVertexColor();
+%rename("%s") FbxGeometryBase::GetElementVertexColor(int pIndex);
+
+%rename("%s") FbxGeometryBase::GetElementNormalCount const;
 %rename("%s") FbxGeometryBase::GetElementNormal();
+%rename("%s") FbxGeometryBase::GetElementNormal(int pIndex);
+
+%rename("%s") FbxGeometryBase::GetElementTangentCount const;
 %rename("%s") FbxGeometryBase::GetElementTangent();
+%rename("%s") FbxGeometryBase::GetElementTangent(int pIndex);
+
+%rename("%s") FbxGeometryBase::GetElementUVCount const;
 %rename("%s") FbxGeometryBase::GetElementUV();
+%rename("%s") FbxGeometryBase::GetElementUV(int pIndex);
 
 #endif
 
